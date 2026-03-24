@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <title>StudyPulse - Study Plan</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* ===== STUDY PLAN PAGE ===== */
+
+      .sp-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-bottom: 36px;
+      }
+
+      .sp-stat-card {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        padding: 24px 20px;
+        text-align: center;
+      }
+
+      .sp-stat-value {
+        font-size: 2.2rem;
+        font-weight: 700;
+        line-height: 1;
+        margin-bottom: 6px;
+      }
+
+      .sp-stat-value.blue { color: #2563eb; }
+      .sp-stat-value.red  { color: #ef4444; }
+      .sp-stat-value.teal { color: #0d9488; }
+
+      .sp-stat-label {
+        font-size: 0.88rem;
+        font-weight: 500;
+        color: #6b7280;
+      }
+
+      .sp-section-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 16px;
+      }
+
+      .sp-dot {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      .sp-dot.red   { background: #ef4444; box-shadow: 0 0 0 4px rgba(239,68,68,0.15); }
+      .sp-dot.amber { background: #d97706; box-shadow: 0 0 0 4px rgba(217,119,6,0.15); }
+      .sp-dot.teal  { background: #0d9488; box-shadow: 0 0 0 4px rgba(13,148,136,0.15); }
+
+      .sp-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 40px;
+      }
+
+      .sp-card {
+        border-radius: 12px;
+        padding: 20px 18px 16px;
+        border: 1px solid;
+        transition: box-shadow 0.18s, border-color 0.18s;
+      }
+
+      .sp-card:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.08); }
+
+      .sp-card.high   { background: #fff5f5; border-color: #fecaca; }
+      .sp-card.medium { background: #fefce8; border-color: #fde68a; }
+      .sp-card.low    { background: #f0fdf9; border-color: #99f6e4; }
+
+      .sp-card-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 4px;
+      }
+
+      .sp-card-title {
+        font-size: 0.97rem;
+        font-weight: 700;
+        color: #111827;
+      }
+
+      .sp-badge {
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 3px 12px;
+        border-radius: 999px;
+        color: #ffffff;
+        flex-shrink: 0;
+        margin-left: 10px;
+      }
+
+      .sp-badge.high   { background: #ef4444; }
+      .sp-badge.medium { background: #6b7280; }
+      .sp-badge.low    { background: #0d9488; }
+
+      .sp-card-subject {
+        font-size: 0.82rem;
+        color: #6b7280;
+        margin-bottom: 10px;
+      }
+
+      .sp-card-tip {
+        font-size: 0.88rem;
+        color: #374151;
+        line-height: 1.55;
+        margin-bottom: 12px;
+      }
+
+      .sp-card-time {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.82rem;
+        color: #6b7280;
+      }
+
+      .sp-card-time svg { flex-shrink: 0; opacity: 0.65; }
+
+      @media (max-width: 768px) {
+        .sp-stats { grid-template-columns: 1fr; }
+        .sp-grid  { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- NAVBAR -->
+    <nav>
+      <a class="nav-logo" href="index.html">
+        <div class="nav-logo-icon">
+          <svg class="logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="8" height="8" rx="2" />
+            <rect x="13" y="3" width="8" height="8" rx="2" />
+            <rect x="3" y="13" width="8" height="8" rx="2" />
+            <rect x="13" y="13" width="8" height="8" rx="2" />
+          </svg>
+        </div>
+        StudyPulse
+      </a>
+
+      <div class="nav-links">
+        <a class="nav-link" href="Weak-topic.html">
+          <svg class="link-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="20" x2="18" y2="10" />
+            <line x1="12" y1="20" x2="12" y2="4" />
+            <line x1="6" y1="20" x2="6" y2="14" />
+          </svg>
+          Dashboard
+        </a>
+        <a class="nav-link" href="Weak-topic.html">
+          <svg class="link-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9" />
+            <circle cx="12" cy="12" r="3" />
+          </svg>
+          Weak Topics
+        </a>
+        <a class="nav-link" href="performance.html">
+          <svg class="link-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+          </svg>
+          Performance
+        </a>
+        <a class="nav-link active" href="study-plan.html">
+          <svg class="link-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+          Study Plan
+        </a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="btn-login">Log in</button>
+        <button class="btn-signup">Sign up</button>
+      </div>
+    </nav>
+
+    <!-- MAIN -->
+    <main>
+      <div class="page-header">
+        <div class="page-title">
+          <span>📅</span>
+          Study Plan
+        </div>
+        <div class="page-subtitle">Your personalized revision roadmap</div>
+      </div>
+
+      <div class="sp-stats" id="sp-stats"></div>
+      <div id="sp-sections"></div>
+    </main>
+
+    <script>
+      // ===== DATA =====
+
+      var stats = [
+        { value: "69h", label: "Total Study Hours",    color: "blue" },
+        { value: "4",   label: "High Priority Topics", color: "red"  },
+        { value: "10",  label: "Topics to Cover",      color: "teal" }
+      ];
+
+      var sections = [
+        {
+          priority: "high",
+          dot: "red",
+          heading: "High Priority — Focus First",
+          topics: [
+            { title: "Probability",       subject: "Mathematics", hours: 8,  tip: "Focus on Bayes' theorem and conditional probability. Practice with real-world problems." },
+            { title: "Calculus",          subject: "Mathematics", hours: 10, tip: "Review integration techniques and practice differential equations daily." },
+            { title: "Organic Chemistry", subject: "Chemistry",   hours: 12, tip: "Master reaction mechanisms starting with SN1/SN2. Use molecular models." },
+            { title: "Quantum Physics",   subject: "Physics",     hours: 8,  tip: "Start with wave-particle duality basics. Watch visual lectures before solving problems." }
+          ]
+        },
+        {
+          priority: "medium",
+          dot: "amber",
+          heading: "Medium Priority — Schedule This Week",
+          topics: [
+            { title: "Physical Chemistry", subject: "Chemistry",        hours: 6, tip: "Connect thermodynamics concepts with chemistry applications." },
+            { title: "Thermodynamics",     subject: "Physics",          hours: 6, tip: "Focus on laws of thermodynamics and heat engine problems." },
+            { title: "Biochemistry",       subject: "Chemistry",        hours: 5, tip: "Study enzyme kinetics and metabolic pathways with diagrams." },
+            { title: "Operating Systems",  subject: "Computer Science", hours: 6, tip: "Practice process scheduling and memory management problems." }
+          ]
+        },
+        {
+          priority: "low",
+          dot: "teal",
+          heading: "Low Priority — Review When Ready",
+          topics: [
+            { title: "Essay Writing",    subject: "English",          hours: 4, tip: "Write one essay daily. Focus on structure: intro, body, conclusion." },
+            { title: "Database Systems", subject: "Computer Science", hours: 4, tip: "Practice SQL queries and normalize sample databases." }
+          ]
+        }
+      ];
+
+      // ===== HELPERS =====
+
+      var clockIcon =
+        '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
+          '<circle cx="12" cy="12" r="10"/>' +
+          '<polyline points="12 6 12 12 16 14"/>' +
+        '</svg>';
+
+      function cap(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+      }
+
+      // ===== RENDER =====
+
+      function renderStats() {
+        var container = document.getElementById("sp-stats");
+        stats.forEach(function(s) {
+          var div = document.createElement("div");
+          div.className = "sp-stat-card";
+          div.innerHTML =
+            '<div class="sp-stat-value ' + s.color + '">' + s.value + '</div>' +
+            '<div class="sp-stat-label">' + s.label + '</div>';
+          container.appendChild(div);
+        });
+      }
+
+      function renderSections() {
+        var container = document.getElementById("sp-sections");
+        sections.forEach(function(sec) {
+          var header = document.createElement("div");
+          header.className = "sp-section-header";
+          header.innerHTML =
+            '<div class="sp-dot ' + sec.dot + '"></div>' +
+            '<span>' + sec.heading + '</span>';
+          container.appendChild(header);
+
+          var grid = document.createElement("div");
+          grid.className = "sp-grid";
+
+          sec.topics.forEach(function(t) {
+            var card = document.createElement("div");
+            card.className = "sp-card " + sec.priority;
+            card.innerHTML =
+              '<div class="sp-card-top">' +
+                '<div class="sp-card-title">' + t.title + '</div>' +
+                '<span class="sp-badge ' + sec.priority + '">' + cap(sec.priority) + '</span>' +
+              '</div>' +
+              '<div class="sp-card-subject">' + t.subject + '</div>' +
+              '<div class="sp-card-tip">' + t.tip + '</div>' +
+              '<div class="sp-card-time">' + clockIcon + ' Estimated: ' + t.hours + ' hours</div>';
+            grid.appendChild(card);
+          });
+
+          container.appendChild(grid);
+        });
+      }
+
+      // ===== INIT =====
+
+      document.addEventListener("DOMContentLoaded", function() {
+        renderStats();
+        renderSections();
+      });
+    </script>
+  </body>
+</html>
